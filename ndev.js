@@ -1,3 +1,18 @@
+class nstring {
+	constructor(str) {
+		this.val = str;
+	}
+
+	includesEvery(arr) {
+		let includes = (el) => this.val.includes(el + "");
+		return arr.every(includes);
+	}
+	includesSome(arr) {
+		let includes = (el) => this.val.includes(el + "");
+		return arr.some(includes);
+	}
+}
+
 class nurl {
 	constructor(url) {
 		if (typeof url == "string") url = new URL(url);
@@ -29,5 +44,33 @@ class nurl {
 	}
 	toString() {
 		return this.url.toString();
+	}
+}
+
+class narray {
+	constructor(arr) {
+		this.val = arr;
+	}
+
+	lower() {
+		this.val = this.val.map((el) =>
+			typeof el == "string" ? el.toLowerCase() : el
+		);
+		return this;
+	}
+	upper() {
+		this.val = this.val.map((el) =>
+			typeof el == "string" ? el.toUpperCase() : el
+		);
+		return this;
+	}
+
+	string() {
+		this.val = this.val.map((el) => el + "");
+		return this;
+	}
+
+	exec() {
+		return this.val;
 	}
 }
