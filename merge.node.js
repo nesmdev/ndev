@@ -5,6 +5,7 @@ const mergeFiles = require('merge-files');
 const output = __dirname + "/ndev.1.0.1.js";
 
 const inputs = [
+	__dirname + "/ndate.js",
 	__dirname + "/nstring.js",
 	__dirname + "/narray.js",
 	__dirname + "/nurl.js",
