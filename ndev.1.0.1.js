@@ -26,9 +26,11 @@ class ndate {
 		let date = this.date;
 		return new Date(date);
 	}
+
+	valid() {
+		return this.date instanceof Date && !isNaN(this.date);
+	}
 }
-
-
 class nstring {
     constructor(str) {
         this.val = str;
