@@ -1,4 +1,4 @@
-const mergeFiles = require('merge-files');
+const mergeFiles = require("merge-files");
 
 //var __dirname = "";
 
@@ -14,8 +14,10 @@ const inputs = [
 // status: true or false
 // const status = await mergeFiles(inputPathList, outputPath);
 // or
-console.log("__dirname",__dirname)
-mergeFiles(inputs, output).then((status) => {
-	// next
-	console.log(status);
-}).catch(err=>console.log("error",err))
+console.log("__dirname", __dirname);
+mergeFiles(inputs, output)
+	.then((status) => {
+		// next
+		console.log(status);
+	})
+	.catch((err) => console.log("error", err));
