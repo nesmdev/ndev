@@ -30,6 +30,40 @@ class ndate {
 	valid() {
 		return this.date instanceof Date && !isNaN(this.date);
 	}
+
+	week(index) {
+		const week_ = [
+			"Domingo",
+			"Lunes",
+			"Martes",
+			"Miércoles",
+			"Jueves",
+			"Viernes",
+			"Sábado",
+		];
+
+		if (index) return week_[index];
+		return week_;
+	}
+
+	months(index) {
+		const months = [
+			"Enero",
+			"Febrero",
+			"Marzo",
+			"Abril",
+			"Mayo",
+			"Junio",
+			"Julio",
+			"Agosto",
+			"Septiembre",
+			"Octubre",
+			"Noviembre",
+			"Diciembre",
+		];
+		if (index) return months[index];
+		return months;
+	}
 }
 class nstring {
     constructor(str) {
