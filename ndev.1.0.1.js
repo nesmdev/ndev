@@ -47,7 +47,7 @@ class ndate {
 	}
 
 	months(index) {
-		const months = [
+		const months_ = [
 			"Enero",
 			"Febrero",
 			"Marzo",
@@ -61,8 +61,8 @@ class ndate {
 			"Noviembre",
 			"Diciembre",
 		];
-		if (index) return months[index];
-		return months;
+		if (index) return months_[index];
+		return months_;
 	}
 }
 class nstring {
