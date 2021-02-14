@@ -9,6 +9,7 @@ const inputs = [
 	__dirname + "/nstring.js",
 	__dirname + "/narray.js",
 	__dirname + "/nurl.js",
+	__dirname + "/nhtml.js",
 ];
 
 // status: true or false
