@@ -31,8 +31,8 @@ class ndate {
 		return this.date instanceof Date && !isNaN(this.date);
 	}
 
-	week(index) {
-		const week_ = [
+	week() {
+		return [
 			"Domingo",
 			"Lunes",
 			"Martes",
@@ -41,13 +41,15 @@ class ndate {
 			"Viernes",
 			"Sábado",
 		];
-
-		if (index) return week_[index];
-		return week_;
 	}
 
-	months(index) {
-		const months_ = [
+	weekDay(index) {
+		let week = this.week();
+		return index ? week[index] : week[new Date().getDay()];
+	}
+
+	months() {
+		return [
 			"Enero",
 			"Febrero",
 			"Marzo",
@@ -61,7 +63,10 @@ class ndate {
 			"Noviembre",
 			"Diciembre",
 		];
-		if (index) return months_[index];
-		return months_;
+	}
+
+	month(index) {
+		let months = this.months();
+		return index ? months[index] : months[new Date().getMonth()];
 	}
 }

@@ -1,8 +1,13 @@
 const mergeFiles = require("merge-files");
+const fs = require("fs");
 
-//var __dirname = "";
+const version = "1.0";
 
-const output = __dirname + "/ndev.1.0.1.js";
+const files = fs.readdirSync("dist");
+const num = files.length + 1;
+const name = "/dist/ndev." + version + ".";
+
+const output = __dirname + name + num + ".js";
 
 const inputs = [
 	__dirname + "/ndate.js",
