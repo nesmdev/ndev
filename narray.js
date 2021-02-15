@@ -1,6 +1,6 @@
 class narray {
 	constructor(arr) {
-		this.val = arr;
+		this.val = JSON.parse(JSON.stringify(arr));
 	}
 
 	lower() {
@@ -20,8 +20,12 @@ class narray {
 		this.val = this.val.map((el) => el + "");
 		return this;
 	}
+	random() {
+		this.val = this.val.sort((a, b) => 0.5 - Math.random());
+		return this;
+	}
 
-	exec() {
+	val() {
 		return this.val;
 	}
 }

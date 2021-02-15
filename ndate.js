@@ -69,4 +69,7 @@ class ndate {
 		let months = this.months();
 		return index ? months[index] : months[new Date().getMonth()];
 	}
+	val() {
+		return this.date;
+	}
 }
