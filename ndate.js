@@ -16,15 +16,19 @@ class ndate {
 		this.date = date;
 	}
 
-	getDate() {
+	date() {
 		let date = this.date;
 
 		return new Date(date.toDateString());
 	}
-
-	getDateTime() {
+	dateTime() {
 		let date = this.date;
 		return new Date(date);
+	}
+
+	day() {
+		var day = this.date.getDate();
+		return ("0" + day).substr(-2);
 	}
 
 	valid() {
@@ -45,7 +49,7 @@ class ndate {
 
 	weekDay(index) {
 		let week = this.week();
-		return index ? week[index] : week[new Date().getDay()];
+		return index ? week[index] : week[this.date.getDay()];
 	}
 
 	months() {
@@ -67,9 +71,21 @@ class ndate {
 
 	month(index) {
 		let months = this.months();
-		return index ? months[index] : months[new Date().getMonth()];
+		return index ? months[index] : months[new Date(this.date).getMonth()];
 	}
-	val() {
+	value() {
 		return this.date;
+	}
+
+	addHours(hours) {
+		this.date.setHours(this.date.getHours() + hours);
+		this.date = new Date(this.date);
+		return this;
+	}
+
+	addMinutes(minutes) {
+		this.date.setMinutes(this.date.getMinutes() + minutes);
+		this.date = new Date(this.date);
+		return this;
 	}
 }

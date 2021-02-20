@@ -12,6 +12,7 @@ const output = __dirname + name + num + ".js";
 const inputs = [
 	__dirname + "/ndate.js",
 	__dirname + "/nstring.js",
+	__dirname + "/nobj.js",
 	__dirname + "/narray.js",
 	__dirname + "/nurl.js",
 	__dirname + "/nhtml.js",
@@ -24,6 +25,6 @@ console.log("__dirname", __dirname);
 mergeFiles(inputs, output)
 	.then((status) => {
 		// next
-		console.log(status);
+		console.log(status,output);
 	})
 	.catch((err) => console.log("error", err));

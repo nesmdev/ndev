@@ -30,4 +30,7 @@ class nurl {
 	toString() {
 		return this.url.toString();
 	}
+	value(){
+		return this.url;
+	}
 }

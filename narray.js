@@ -1,6 +1,6 @@
 class narray {
 	constructor(arr) {
-		this.val = JSON.parse(JSON.stringify(arr));
+		this.val = [...arr];
 	}
 
 	lower() {
@@ -25,7 +25,7 @@ class narray {
 		return this;
 	}
 
-	val() {
+	value() {
 		return this.val;
 	}
 }
