@@ -220,8 +220,13 @@ class nhtml {
 		return this;
 	}
 
-	getScripts(){
+	getScripts() {
 		return this.html.match(/<script[\s\S]*?>[\s\S]*?<\/script>/gi);
+	}
+
+	getScriptsText() {
+		let scripts = this.getScripts();
+		return scripts.map((script) => $(script).text().trim());
 	}
 
 	value() {
