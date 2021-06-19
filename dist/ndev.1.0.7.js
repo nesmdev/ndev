@@ -49,7 +49,7 @@ class ndate {
 
 	weekDay(index) {
 		let week = this.week();
-		return index ? week[index] : week[new Date().getDay()];
+		return index ? week[index] : week[this.date.getDay()];
 	}
 
 	months() {
@@ -71,10 +71,22 @@ class ndate {
 
 	month(index) {
 		let months = this.months();
-		return index ? months[index] : months[new Date().getMonth()];
+		return index ? months[index] : months[new Date(this.date).getMonth()];
 	}
 	value() {
 		return this.date;
+	}
+
+	addHours(hours) {
+		this.date.setHours(this.date.getHours() + hours);
+		this.date = new Date(this.date);
+		return this;
+	}
+
+	addMinutes(minutes) {
+		this.date.setMinutes(this.date.getMinutes() + minutes);
+		this.date = new Date(this.date);
+		return this;
 	}
 }
 class nstring {
@@ -90,13 +102,43 @@ class nstring {
         let includes = (el) => this.val.includes(el + "");
         return arr.some(includes);
     }
-    value(){
+
+    copy() {
+        var input = document.createElement("textarea");
+        input.value = this.val;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        return true;
+    }
+
+    value() {
         return this.val;
     }
 }
+class nobj {
+	constructor(obj) {
+		this.val = { ...obj };
+	}
+
+	invert() {
+		var obj = {};
+		for (var key in this.val) {
+			var val = this.val[key];
+			obj[val] = key;
+		}
+
+		this.val = { ...obj };
+		return this;
+	}
+	value() {
+		return this.val;
+	}
+}
 class narray {
 	constructor(arr) {
-		this.val = JSON.parse(JSON.stringify(arr));
+		this.val = [...arr];
 	}
 
 	lower() {
@@ -118,6 +160,11 @@ class narray {
 	}
 	random() {
 		this.val = this.val.sort((a, b) => 0.5 - Math.random());
+		return this;
+	}
+	unique() {
+		var arr = this.val.filter((el, i, arr) => arr.indexOf(el) === i);
+		this.val = [...arr];
 		return this;
 	}
 
@@ -171,6 +218,10 @@ class nhtml {
 			this.html = this.html.replaceAll(`{{${key}}}`, object[key]);
 		}
 		return this;
+	}
+
+	getScripts(){
+		return this.html.match(/<script[\s\S]*?>[\s\S]*?<\/script>/gi);
 	}
 
 	value() {

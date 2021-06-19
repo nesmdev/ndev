@@ -10,6 +10,10 @@ class nhtml {
 		return this;
 	}
 
+	getScripts(){
+		return this.html.match(/<script[\s\S]*?>[\s\S]*?<\/script>/gi);
+	}
+
 	value() {
 		return this.html;
 	}

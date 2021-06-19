@@ -16,15 +16,19 @@ class ndate {
 		this.date = date;
 	}
 
-	getDate() {
+	date() {
 		let date = this.date;
 
 		return new Date(date.toDateString());
 	}
-
-	getDateTime() {
+	dateTime() {
 		let date = this.date;
 		return new Date(date);
+	}
+
+	day() {
+		var day = this.date.getDate();
+		return ("0" + day).substr(-2);
 	}
 
 	valid() {
@@ -69,6 +73,9 @@ class ndate {
 		let months = this.months();
 		return index ? months[index] : months[new Date().getMonth()];
 	}
+	value() {
+		return this.date;
+	}
 }
 class nstring {
     constructor(str) {
@@ -83,10 +90,13 @@ class nstring {
         let includes = (el) => this.val.includes(el + "");
         return arr.some(includes);
     }
+    value(){
+        return this.val;
+    }
 }
 class narray {
 	constructor(arr) {
-		this.val = arr;
+		this.val = JSON.parse(JSON.stringify(arr));
 	}
 
 	lower() {
@@ -106,8 +116,12 @@ class narray {
 		this.val = this.val.map((el) => el + "");
 		return this;
 	}
+	random() {
+		this.val = this.val.sort((a, b) => 0.5 - Math.random());
+		return this;
+	}
 
-	exec() {
+	value() {
 		return this.val;
 	}
 }
@@ -142,6 +156,9 @@ class nurl {
 	}
 	toString() {
 		return this.url.toString();
+	}
+	value(){
+		return this.url;
 	}
 }
 class nhtml {

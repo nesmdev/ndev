@@ -24,6 +24,11 @@ class narray {
 		this.val = this.val.sort((a, b) => 0.5 - Math.random());
 		return this;
 	}
+	unique() {
+		var arr = this.val.filter((el, i, arr) => arr.indexOf(el) === i);
+		this.val = [...arr];
+		return this;
+	}
 
 	value() {
 		return this.val;

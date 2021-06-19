@@ -16,12 +16,14 @@ class ndate {
 		this.date = date;
 	}
 
-	getDate() {
-		let date = this.date.toDateString();
-		return new Date(date);
+	date() {
+		let date = this.date;
+
+		return new Date(date.toDateString());
 	}
-	getDateTime() {
-		return new Date(this.date);
+	dateTime() {
+		let date = this.date;
+		return new Date(date);
 	}
 
 	day() {
@@ -47,7 +49,7 @@ class ndate {
 
 	weekDay(index) {
 		let week = this.week();
-		return index ? week[index] : week[new Date().getDay()];
+		return index ? week[index] : week[this.date.getDay()];
 	}
 
 	months() {
@@ -69,29 +71,63 @@ class ndate {
 
 	month(index) {
 		let months = this.months();
-		return index ? months[index] : months[new Date().getMonth()];
+		return index ? months[index] : months[new Date(this.date).getMonth()];
 	}
-	val() {
+	value() {
 		return this.date;
+	}
+
+	addHours(hours) {
+		this.date.setHours(this.date.getHours() + hours);
+		this.date = new Date(this.date);
+		return this;
+	}
+
+	addMinutes(minutes) {
+		this.date.setMinutes(this.date.getMinutes() + minutes);
+		this.date = new Date(this.date);
+		return this;
 	}
 }
 class nstring {
-	constructor(str) {
-		this.val = str;
+    constructor(str) {
+        this.val = str;
+    }
+
+    includesEvery(arr) {
+        let includes = (el) => this.val.includes(el + "");
+        return arr.every(includes);
+    }
+    includesSome(arr) {
+        let includes = (el) => this.val.includes(el + "");
+        return arr.some(includes);
+    }
+    value(){
+        return this.val;
+    }
+}
+class nobj {
+	constructor(obj) {
+		this.val = { ...obj };
 	}
 
-	includesEvery(arr) {
-		let includes = (el) => this.val.includes(el + "");
-		return arr.every(includes);
+	invert() {
+		var obj = {};
+		for (var key in this.val) {
+			var val = this.val[key];
+			obj[val] = key;
+		}
+
+		this.val = { ...obj };
+		return this;
 	}
-	includesSome(arr) {
-		let includes = (el) => this.val.includes(el + "");
-		return arr.some(includes);
+	value() {
+		return this.val;
 	}
 }
 class narray {
 	constructor(arr) {
-		this.val = JSON.parse(JSON.stringify(arr));
+		this.val = [...arr];
 	}
 
 	lower() {
@@ -116,7 +152,7 @@ class narray {
 		return this;
 	}
 
-	val() {
+	value() {
 		return this.val;
 	}
 }
@@ -151,6 +187,9 @@ class nurl {
 	}
 	toString() {
 		return this.url.toString();
+	}
+	value(){
+		return this.url;
 	}
 }
 class nhtml {

@@ -16,15 +16,19 @@ class ndate {
 		this.date = date;
 	}
 
-	getDate() {
+	date() {
 		let date = this.date;
 
 		return new Date(date.toDateString());
 	}
-
-	getDateTime() {
+	dateTime() {
 		let date = this.date;
 		return new Date(date);
+	}
+
+	day() {
+		var day = this.date.getDate();
+		return ("0" + day).substr(-2);
 	}
 
 	valid() {
@@ -45,7 +49,7 @@ class ndate {
 
 	weekDay(index) {
 		let week = this.week();
-		return index ? week[index] : week[new Date().getDay()];
+		return index ? week[index] : week[this.date.getDay()];
 	}
 
 	months() {
@@ -69,8 +73,20 @@ class ndate {
 		let months = this.months();
 		return index ? months[index] : months[new Date().getMonth()];
 	}
-	val() {
+	value() {
 		return this.date;
+	}
+
+	addHours(hours) {
+		this.date.setHours(this.date.getHours() + hours);
+		this.date = new Date(this.date);
+		return this;
+	}
+
+	addMinutes(minutes) {
+		this.date.setMinutes(this.date.getMinutes() + minutes);
+		this.date = new Date(this.date);
+		return this;
 	}
 }
 class nstring {
@@ -85,6 +101,9 @@ class nstring {
     includesSome(arr) {
         let includes = (el) => this.val.includes(el + "");
         return arr.some(includes);
+    }
+    value(){
+        return this.val;
     }
 }
 class narray {
@@ -114,7 +133,7 @@ class narray {
 		return this;
 	}
 
-	val() {
+	value() {
 		return this.val;
 	}
 }
@@ -149,6 +168,9 @@ class nurl {
 	}
 	toString() {
 		return this.url.toString();
+	}
+	value(){
+		return this.url;
 	}
 }
 class nhtml {

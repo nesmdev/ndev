@@ -49,7 +49,7 @@ class ndate {
 
 	weekDay(index) {
 		let week = this.week();
-		return index ? week[index] : week[new Date().getDay()];
+		return index ? week[index] : week[this.date.getDay()];
 	}
 
 	months() {
@@ -71,10 +71,22 @@ class ndate {
 
 	month(index) {
 		let months = this.months();
-		return index ? months[index] : months[new Date().getMonth()];
+		return index ? months[index] : months[new Date(this.date).getMonth()];
 	}
 	value() {
 		return this.date;
+	}
+
+	addHours(hours) {
+		this.date.setHours(this.date.getHours() + hours);
+		this.date = new Date(this.date);
+		return this;
+	}
+
+	addMinutes(minutes) {
+		this.date.setMinutes(this.date.getMinutes() + minutes);
+		this.date = new Date(this.date);
+		return this;
 	}
 }
 class nstring {
@@ -90,10 +102,43 @@ class nstring {
         let includes = (el) => this.val.includes(el + "");
         return arr.some(includes);
     }
+
+    copy() {
+        var input = document.createElement("textarea");
+        input.value = this.val;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        return true;
+    }
+
+    value() {
+        return this.val;
+    }
+}
+class nobj {
+	constructor(obj) {
+		this.val = { ...obj };
+	}
+
+	invert() {
+		var obj = {};
+		for (var key in this.val) {
+			var val = this.val[key];
+			obj[val] = key;
+		}
+
+		this.val = { ...obj };
+		return this;
+	}
+	value() {
+		return this.val;
+	}
 }
 class narray {
 	constructor(arr) {
-		this.val = JSON.parse(JSON.stringify(arr));
+		this.val = [...arr];
 	}
 
 	lower() {
@@ -154,13 +199,16 @@ class nurl {
 	toString() {
 		return this.url.toString();
 	}
+	value(){
+		return this.url;
+	}
 }
 class nhtml {
 	constructor(html) {
 		this.html = html;
 	}
 
-	setvalue(object) {
+	setVal(object) {
 		for (var key in object) {
 			this.html = this.html.replaceAll(`{{${key}}}`, object[key]);
 		}
