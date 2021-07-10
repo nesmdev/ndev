@@ -25,4 +25,19 @@ class nstring {
     value() {
         return this.val;
     }
+    validFileName() {
+        return this.val
+            .replace(/[?]/g, "_")
+            .replace(/[:]/g, ".")
+            .replace(/[;]/g, ",")
+            .replace(/[*]/g, "")
+            .replace(/[/]/g, "-")
+            .replace(/[\\]/g, "-")
+            .replace(/[{]/g, "[")
+            .replace(/[}]/g, "]")
+            .replace(/["]/g, "'")
+            .replace(/[>]/g, "]")
+            .replace(/[<]/g, "[")
+            .replace(/[|]/g, "-");
+    }
 }
