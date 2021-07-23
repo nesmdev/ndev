@@ -22,6 +22,10 @@ class nstring {
         return true;
     }
 
+    copy2() {
+        navigator.clipboard.writeText(this.val);
+    }
+
     value() {
         return this.val;
     }
